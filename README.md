@@ -1,178 +1,175 @@
-# Captain's Log
+# Full Stack Budgeting App
 
-![](https://cdn.shopify.com/s/files/1/2256/1635/products/4520_c-01.jpg?v=1510506828)
+Create a backend API using Express that performs full CRUD on a single model, `transactions`. Then, using RESTful routes, connect it to a React app.
 
-Every great captain, whether on the waters or in the skies, keeps a daily log.
+![](./assets/index-page.png)
 
-Let's build the perfect Captain's Log App for our extraordinary captains. So that future generations can learn about life on a ship.
+![](./assets/new-page.png)
 
-![](https://i.imgflip.com/2174sq.jpg)
+## Overview
 
-## Multiple Session Lab/Activity
+- Use Express to build a back-end.
+- Use `create-react-app` to build a front-end.
+- Connect the back-end and the front-end.
+- Deploy both apps so anyone can see them online.
 
-While you will start this lab/activity today, you will have many sessions to build it out.
+## User Stories, Acceptance Criteria and Code Quality Rubric
 
-The different parts should align with what you are learning in lecture.
+You must implement all of the user stories and acceptance criteria below. After those are completed, look at and implement as many of the bonus features as you want to.
 
-By the end, your app should have the following functionality
+Be sure to build this out as a portfolio piece: Something you would be excited to show to a potential employer and be able to talk through the code with them.
 
-|  #  | Action  |    URL    | HTTP Verb |    CRUD    |              Description              |
-| :-: | :-----: | :-------: | :-------: | :--------: | :-----------------------------------: |
-|  1  |  Index  |   /logs   |    GET    |  **R**ead  |   Get a list (or index) of all logs   |
-|  2  |  Show   | /logs/:id |    GET    |  **R**ead  | Get an individual view (show one log) |
-|  3  | Create  |   /logs   |   POST    | **C**reate |           Create a new log            |
-|  4  | Destroy | /logs/:id |  DELETE   | **D**elete |             Delete a log              |
-|  5  | Update  | /logs/:id |    PUT    | **U**pdate |             Update a log              |
+### User Stories
 
-There are tests that where you can check your progress. By the end, you should have all tests passing. Bonuses in each section are not required to pass the assignment.
+You must successfully build a minimum of 6 out of 9 features to pass this project
 
-If you finish ahead of time you can try the bonus challenges in each section, or work on `express-ufo`, [work on some code challenges](add link) or continue polishing your Bootstrap CSS skills.
+#### (1) Navigation/Nav Bar
 
-If you feel like you are falling behind, reach out to an instructor.
+- The Nav bar allows me to navigate to the Index and New pages
 
-## Part 1
+#### (2) Index Page
 
-|  #  | Action |  URL  | HTTP Verb |   CRUD   |            Description            |
-| :-: | :----: | :---: | :-------: | :------: | :-------------------------------: |
-|  1  | Index  | /logs |    GET    | **R**ead | Get a list (or index) of all logs |
+- I can see a list of income and expenditures with the date, the transaction name and the amount on the Index page.
 
-- fork and clone this repository
-- `cd` into this repository
-- `npm install` to install the dependencies for `Jest`
-- `npm test` to run tests
-- Make sure you are on the same level as the package.json and
-- create a basic express app, use the tests to help guide you
+- There is also an Account total visible that sums all the different expenditures and shows the user how much money they currently have.
 
-then, build an array of 3 objects that have a
+#### (3) New Page
 
-- captainName: string
-- title: string
-- post: string
-- mistakesWereMadeToday: boolean
-- daysSinceLastCrisis: number
+- I can click on a "New" button that takes me to the New page, with a form that lets me create a new transaction.
 
-Let's get you started with the first few. To pass tests, be sure to keep this object as your first one.
+- Once a transaction is created, I am navigated back to the Index page
 
-```js
-module.exports = [
-  {
-    captainName: "Picard",
-    title: "Courage",
-    post: "Courage can be an emotion too.",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 100,
-  },
-  {
-    captainName: "Ahab",
-    title: "Whale",
-    post: "By heavens man, we are turned round and round in this world, like yonder windlass, and fate is the handspike.",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 20,
-  },
-  {
-    captainName: "Sarah Lance",
-    title: "Vandal Savage",
-    post: "I’d tell you to go to hell, but you’d probably just feel at home there.",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 0,
-  },
-  {
-    captainName: "Ahab",
-    title: "Insolence",
-    post: "I don't give reasons. I give orders!",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 100,
-  },
-  {
-    captainName: "Sarah Lance",
-    title: "Ava",
-    post: "Ava's the kind of girl that you take home to your parents, and I am the kind you take to an exorcism",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 0,
-  },
-  {
-    captainName: "Ahab",
-    title: "What is sleep?",
-    post: "Sleep? That bed is a coffin, and those are winding sheets. I do not sleep, I die.",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 5,
-  },
-  {
-    captainName: "Sarah Lance",
-    title: "Jonah Hex",
-    post: "I know you don’t like taking orders from a woman, but you’re gonna like getting your ass kicked by one even less.",
-    mistakesWereMadeToday: true,
-    daysSinceLastCrisis: 0,
-  },
-];
-```
+#### (4) Show Page
 
-- create a route `/` that says something like `welcome to the captain's log`
-- create a route `/logs` that shows the array of logs you've created
-- create a 404 route that when a user tries to access a route that doesn't exist, they will see this page
+- I can see a single expenditure with more details and appropriate navigation links
 
-### Bonus
+#### (5) Edit page
 
-Add functionality where if a user goes to
+- I can see a form that is pre-filled with an individual expenditure that allows me to update the expenditure. Once updated, I am taken back to the show page where I should be able to see the updated transaction, without needing to refresh the page.
 
-- `/logs?order=asc` it will organize the logs alphabetically
-- `/logs?order=desc` it will organize the logs in reverse alphabetical order
-- `/logs?mistakes=true` it will only show the logs where the value of `mistakesWereMadeToday` is true
-- `/logs?mistakes=false` it will only show the logs where the value of `mistakesWereMadeToday` is false
-- `/logs?lastCrisis=gt10` it will return all the logs where the `daysSinceLastCrisis`is **g**reater **t**than 10
-- `/logs?lastCrisis=gte20`it will return all the logs where the `daysSinceLastCrisis`is **g**reater **t**than or **e**qual to 20
-- `/logs?lastCrisis=lte5`it will return all the logs where the `daysSinceLastCrisis`is **l**ess **t**than or **e**qual to 5
+- The edit form is accessible either from the Show page or Index page via button/link.
 
-**Note** the original `/logs` route should be unaffected by these additions
+#### (6) Delete functionality
 
-## Part 2
+- The expenditure can be deleted.
 
-Do not start Part 2 until your index route passes all its tests. If you are stuck, be sure to ask for help.
+- The delete functionality is accessible either from the Show page or Index page via button/link.
 
-|  #  |   Action   |    URL    | HTTP Verb |    CRUD    |              Description              |
-| :-: | :--------: | :-------: | :-------: | :--------: | :-----------------------------------: |
-|  2  |  **Show**  | /logs/:id |    GET    |  **R**ead  | Get an individual view (show one log) |
-|  3  | **Create** |   /logs   |   POST    | **C**reate |           Create a new log            |
+#### (7) Account Total
 
-- add routes for create and show
-- add some logic so that if someone goes to an invalid array position they will be redirected to the 404 route you had written in the last part
+- The account total is visible either on the Index page (this is more straightforward) or in the Nav Bar (this is more challenging).
 
-### Bonuses
+- The account CSS changes depending on the amount. The account should show green (or similar color) if the amount is above $1000. There should be neutral/white color between $0 - $1000. And it should show a red (or similar color) if the bank account value falls below $0.
 
-Add a validation function that checks to make sure that the values of each key are the correct type
+- The changing color can be text, background, border, as long as it is in/near the account total and provides clarity with what it is showing.
 
-- captainName: string
-- title: string
-- post: string
-- mistakesWereMadeToday: boolean
-- daysSinceLastCrisis: number
+#### (8) UX/UI
 
-If a wrong datatype is entered, send an error, otherwise push the new data into the array
+- There is effort to make the app styled. Forms are styled and properly labeled. The navigation is clear and easy to use, a color theme has been chosen and applied. At least one font has been chosen and applied. The app is responsive (readable/usable) across multiple screen sizes/widths.
 
-Add a new folder called `v2` - In version 2, instead of sending JSON, you'll be sending your data embedded in some HTML.
+#### (9) Deployed online
 
-- inside of the `v2` folder make a new `controllers` folder
-  - inside of the `controllers` folder add `logsController.js`
-- in `app.js` set up the new controllers so that the route will be `/v2/logs`
-- write some logic to display the index data embedded in an unordered list of anchor tags linking to the show routes at `/v2/logs/:index`
-- write some logic to display the show data as an `h1` tag for the title, a `p` tag for the post, and additional styling for the other fields. Create a back button that takes users back to `/v2/logs`
-- This code likely is becoming rather tough to maintain. You can look into setting up a template engine like [ejs](https://ejs.co/) or creating a create-react-app front end and connecting it to the main API `/logs` not `/v2/logs` - **NOTE:** we'll learn how to connect a create-react-app in a later lesson.
+- I can visit the application via the internet
 
-## Part 3
+- Netlify is configured correctly that I can send a link to the New page to someone and it works (does not give a 404)
 
-Do not start Part 3 until your show and create routes pass all its tests. If you are stuck, be sure to ask for help.
+#### Bonus Feature
 
-|  #  |   Action    |    URL    | HTTP Verb |    CRUD    | Description  |
-| :-: | :---------: | :-------: | :-------: | :--------: | :----------: |
-|  4  | **Destroy** | /logs/:id |  DELETE   | **D**elete | Delete a log |
-|  5  | **Update**  | /logs/:id |    PUT    | **U**pdate | Update a log |
+- There is implementation of at least one bonus feature beyond what has been taught in class/required in lab/required in the rest of the criteria.
 
-- add routes for delete and update
-- add some logic so that if someone goes to an invalid array position they will be redirected to the 404 route you had written in the last part
+- This can be a CSS framework, a new NPM package, a chart that shows the data in a new way, working with the date object instead of strings etc. Please confirm with your instructor.
 
-- Your app should now pass all tests!
+### Acceptance Criteria
 
-### Bonuses
+#### Back-end
 
-- If you've already written a validation function, try adding it to the update route. If you have not written it yet, give it a try!
-- Go back and try any of the previous Bonuses
+For the back-end to be complete, the following must be true:
+
+- The application uses `express`, `dotenv`, `cors`.
+- The application is deployed on Heroku and can be accessed from your React front-end app and Postman.
+- The application has the following routes and work as described below.
+- The application handles common errors and has any necessary validations
+
+|  #  | Action  |        URL        | HTTP Verb |    CRUD    |                  Description                   |
+| :-: | :-----: | :---------------: | :-------: | :--------: | :--------------------------------------------: |
+|  1  |  Index  |   /transactions   |    GET    |  **R**ead  |   Get a list (or index) of all transactions    |
+|  2  |  Show   | /transactions/:id |    GET    |  **R**ead  | Get an individual view (show one transactions) |
+|  3  | Create  |   /transactions   |   POST    | **C**reate |           Create a new transactions            |
+|  4  | Destroy | /transactions/:id |  DELETE   | **D**elete |             Delete a transactions              |
+|  5  | Update  | /transactions/:id |    PUT    | **U**pdate |             Update a transactions              |
+
+> **Note:** All of the above routes should work both with an application like Postman and a front-end framework like React
+
+**Model**
+
+- There will be one model with at least these components
+- `item_name`- string - the name of the transaction (ie: income, savings, cat food, etc.)
+- `amount` -number - the amount of the transaction
+- `date`- string - the date should be a simple string. As a bonus activity, use the date object and date input field and format it to be human-readable
+- `from` - string - who this transacton was with (ie. employer, bank, pet store, grocery store, etc)
+- `category` - string - what category does this fall into (income, savings, pets, food, etc) - bonus, make this an options list on the new/edit forms.
+
+#### Front-End
+
+For the front-end to be complete, the following must be true:
+
+1. The application is deployed.
+1. The navigation bar allows the user to switch between the "Index" and "New" pages. Bonus: shows amount total.
+1. The following is present on the "Index" page:
+
+   - The navigation bar.
+   - A list of transactions that have the following properties visible:
+     - `date` - a string, in any format.
+     - `name` - a string, representing the name of the transactions.
+     - `amount` - a number, representing the amount of the expenditure/income.
+     - The bank account total somewhere near the top.
+     - The bank account CSS changes depending on the amount in the bank account
+
+1. The following is present on the "New" page:
+
+   - The navigation bar.
+   - The url will be `/transactions/new`.
+   - The form to create new transactions, which has four fields.
+     - `date` - a string, in any format.
+     - `name` - a string, the name of the transactions.
+     - `amount` - a number, the amount of the expenditure/income.
+     - `from` - a string, where this expense/income has come from.
+     - `category` - a string. As a bonus, this can be an options menu.
+
+1. The following is present on the "Show" page
+
+   - `date` - a string, in any format.
+   - `name` - a string, the name of the transactions.
+   - `amount` - a number, the amount of the expenditure/income.
+   - `from` - a string, where this expense/income has come from.
+   - `category` - a string`
+
+1. The following is present on the "Edit" page
+   - The navigation bar.
+   - The url will be `/transactions/new`.
+   - The form to create new transactions, which has four fields.
+     - `date` - a string, in any format.
+     - `name` - a string, the name of the transactions.
+     - `amount` - a number, the amount of the expenditure/income.
+     - `from` - a string, where this expense/income has come from.
+     - `category` - a string. As a bonus, this can be an options menu.
+
+## Deployment
+
+- [Netlify Deployment for create-react-app](./netlify-cra.md)
+
+- [Netlify Set Up Continuous Deployment](https://github.com/joinpursuit/Netlify-CRA-Cont-Deploy-Guide)
+
+- [Deploy Express App to Heroku](./heroku-deployment.md)
+
+## Bonus Ideas:
+
+- Change favicon from default react app.
+- Add some logic/functionality that will make income a positive number and an expenditure a negative number, rather than having the user type it in.
+- Use [react-bootstrap](https://react-bootstrap.github.io) or similar, to help style your app.
+- Show the amount in the nav bar, so it is visible on every view.
+- Use the date object for the date, instead of just a string.
+- Use the input type `date` for the date.
+- Add a library like [chartjs](https://www.chartjs.org) or [D3](https://www.chartjs.org) to provide visualizations the budget app.
+
+Be sure to confirm with your instructor which bonus idea you will implement.
