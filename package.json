@@ -1,5 +1,5 @@
 {
-  "name": "budgetApp_restful_api",
+  "name": "budget-app-restful-api",
   "version": "1.0.0",
   "engines": {
     "node": "17.2.0"

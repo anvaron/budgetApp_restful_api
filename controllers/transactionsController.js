@@ -14,7 +14,7 @@ const transactions = express.Router();
     // GET / Show => /transactions/:id
     transactions.get("/:id", (req, res) => {
       const { id } = req.params;
-      // Validating id
+      
       (transactionsData[id]) 
       ? 
       res.json(transactionsData[id]) 
